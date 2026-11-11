@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { hotel, phoneLink } from "../data/hotel";
+const phone = phoneLink();
+---
+<BaseLayout title="Contact us">
+  <Header />
+  <main>
+    <section class="page-hero"><div class="container"><span class="eyebrow">WE ARE HERE TO HELP</span><h1 class="display">Contact & location</h1><p>Speak with us about your stay in {hotel.town}.</p></div></section>
+    <section class="section"><div class="container contact-grid">
+      <div><span class="eyebrow">GET IN TOUCH</span><h2 class="display">We look forward to welcoming you.</h2><p>For room availability, tariffs and other enquiries, contact Sree Venkatesh Residency directly.</p>
+        <div class="contact-item"><strong>Address</strong><span>{hotel.fullAddress || `Address to be added · ${hotel.town}, ${hotel.state}`}</span></div>
+        <div class="contact-item"><strong>Phone</strong>{phone ? <a href={phone}>{hotel.phoneDisplay}</a> : <span>Phone number to be added</span>}</div>
+        <div class="contact-item"><strong>Alternate phone</strong><a href={`tel:+${hotel.alternatePhoneE164}`}>{hotel.alternatePhoneDisplay}</a></div>
+        <div class="contact-item"><strong>Google Maps</strong><a href={hotel.mapDirectionsUrl} target="_blank" rel="noopener noreferrer">Open shared hotel location ↗</a></div>
+        <div class="contact-item"><strong>Stay timings</strong><span>Check-in: {hotel.checkInTime} · Check-out: {hotel.checkOutTime} the following day</span></div>
+        <div class="contact-actions">{phone && <a class="btn btn-primary" href={phone}>Call now</a>}</div>
+      </div>
+      <div class="map-box">{hotel.mapEmbedUrl ? <iframe src={hotel.mapEmbedUrl} loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Map showing ${hotel.name}`}></iframe> : <div><span class="eyebrow">FIND US</span><h3> {hotel.town}, Tamil Nadu</h3><p>Open the hotel's shared Google location for directions. The street address is still pending confirmation.</p><a class="btn btn-outline" href={hotel.mapDirectionsUrl} target="_blank" rel="noopener noreferrer">Open Google location ↗</a></div>}</div>
+    </div></section>
+  </main>
+  <Footer />
+</BaseLayout>
+<style>
+.page-hero{background:var(--cream);padding:78px 0;text-align:center}.page-hero h1{font-size:clamp(2.5rem,5vw,4rem);color:var(--maroon-dark);margin:15px 0}.page-hero p{color:var(--muted)}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:stretch}.contact-grid h2{font-size:clamp(2rem,4vw,3rem);color:var(--maroon-dark);margin:15px 0}.contact-grid>div>p,.contact-item span{color:var(--muted);line-height:1.8}.contact-item{display:grid;gap:5px;border-top:1px solid var(--line);padding:17px 0}.contact-item strong{color:var(--maroon-dark)}.contact-item a{color:var(--maroon)}.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.map-box{min-height:330px;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center;text-align:center;padding:25px}.map-box iframe{width:100%;height:100%;min-height:330px;border:0}.map-box h3{font:500 1.7rem Georgia,serif;color:var(--maroon-dark)}.map-box p{color:var(--muted);line-height:1.7}@media(max-width:700px){.contact-grid{grid-template-columns:1fr;gap:28px}}
+</style>

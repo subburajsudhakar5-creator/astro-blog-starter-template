@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+import { hotel } from "../data/hotel";
+const { title = hotel.name, description = hotel.description } = Astro.props;
+const pageTitle = title === hotel.name ? `${hotel.name} | ${hotel.town}` : `${title} | ${hotel.name}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#713d31" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:image" content="/images/hotel-exterior-side.webp" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

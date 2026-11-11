@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { hotel, phoneLink } from "../data/hotel";
+const phone = phoneLink();
+---
+<BaseLayout title="Rooms & tariffs">
+  <Header />
+  <main>
+    <section class="page-hero"><div class="container"><span class="eyebrow">ROOMS & TARIFFS</span><h1 class="display">Find a room for your stay</h1><p>Tariffs shown exclude taxes. Call to confirm the final total and availability.</p></div></section>
+    <section class="section"><div class="container room-grid">
+      {hotel.rooms.map((room) => <article class="card">
+        <img src={room.image} alt={room.slug === "deluxe-ac-double" ? "Deluxe AC Double guest room" : "Standard Single Non AC room photo pending"} />
+        <div class="room-copy"><span class="eyebrow">ROOM CATEGORY</span><h2>{room.name}</h2><p>{room.shortDescription}</p><strong>{room.tariff || "Tariff on enquiry"}</strong><a class="btn btn-primary" href={phone || "/contact"}>Call to enquire about this room</a></div>
+      </article>)}
+    <div class="policy"><strong>Check-in: {hotel.checkInTime}</strong><strong>Check-out: {hotel.checkOutTime} (next day)</strong><p>Rates are per night, excluding applicable taxes. Please call to confirm availability and total price.</p></div>
+    </div></section>
+  </main>
+  <Footer />
+</BaseLayout>
+<style>
+.page-hero{background:var(--cream);padding:78px 0;text-align:center}.page-hero h1{font-size:clamp(2.5rem,5vw,4rem);color:var(--maroon-dark);margin:15px 0}.page-hero p{color:var(--muted)}.policy{grid-column:1/-1;margin-top:28px;padding:20px;background:var(--cream);display:flex;gap:14px 25px;align-items:center;flex-wrap:wrap;color:var(--maroon-dark)}.policy p{margin:0;color:var(--muted);font-size:.85rem}.room-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.card img{width:100%;aspect-ratio:16/10;object-fit:cover}.room-copy{padding:24px}.room-copy h2{font:500 1.7rem Georgia,serif;color:var(--maroon-dark)}.room-copy p{color:var(--muted);line-height:1.7}.room-copy strong{display:block;margin:18px 0;color:var(--maroon)}@media(max-width:650px){.policy{grid-column:1/-1;margin-top:28px;padding:20px;background:var(--cream);display:flex;gap:14px 25px;align-items:center;flex-wrap:wrap;color:var(--maroon-dark)}.policy p{margin:0;color:var(--muted);font-size:.85rem}.room-grid{grid-template-columns:1fr}}
+</style>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+<BaseLayout title="Gallery">
+  <Header />
+  <main>
+    <section class="page-hero"><div class="container"><span class="eyebrow">PHOTO GALLERY</span><h1 class="display">A glimpse of our residency</h1><p>Photographs of Sree Venkatesh Residency and its Deluxe AC Double rooms.</p></div></section>
+    <section class="section"><div class="container gallery-grid">
+      <img src="/images/hotel-exterior-side.webp" alt="Exterior side view of Sree Venkatesh Residency" />
+      <img src="/images/hotel-entrance.webp" alt="Hotel entrance and signage" />
+      <img src="/images/deluxe-ac-room-1.webp" alt="Deluxe AC Double room with wooden bed and television" />
+      <img src="/images/deluxe-ac-room-2.webp" alt="Deluxe AC Double room with air conditioner" />
+      <img src="/images/deluxe-ac-room-3.webp" alt="Deluxe AC Double room with wood-panelled furniture" />
+      <img src="/images/interior-corridor.webp" alt="Indoor corridor outside guest rooms" />
+      <img src="/images/outdoor-corridor.webp" alt="Outdoor walkway near guest rooms" />
+    </div></section>
+  </main>
+  <Footer />
+</BaseLayout>
+<style>
+.page-hero{background:var(--cream);padding:78px 0;text-align:center}.page-hero h1{font-size:clamp(2.5rem,5vw,4rem);color:var(--maroon-dark);margin:15px 0}.page-hero p{color:var(--muted)}.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.gallery-grid img{width:100%;border-radius:5px}.gallery-grid img:first-child{grid-column:1/-1;aspect-ratio:16/7;object-fit:cover}@media(max-width:600px){.gallery-grid{grid-template-columns:1fr}.gallery-grid img:first-child{grid-column:auto}}
+</style>
