@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { hotel } from "../data/hotel";
+---
+<BaseLayout title="Facilities">
+  <Header />
+  <main>
+    <section class="page-hero"><div class="container"><span class="eyebrow">FACILITIES</span><h1 class="display">Thoughtful essentials for your stay</h1><p>Our confirmed facilities will be listed here.</p></div></section>
+    <section class="section"><div class="container facility-wrap">
+      {hotel.facilities.length > 0 ? <ul>{hotel.facilities.map((item) => <li>{item}</li>)}</ul> : <div class="empty"><h2>Facilities information coming soon</h2><p>We will update this page with the facilities available at Sree Venkatesh Residency once confirmed by the hotel.</p></div>}
+    </div></section>
+  </main>
+  <Footer />
+</BaseLayout>
+<style>
+.page-hero{background:var(--cream);padding:78px 0;text-align:center}.page-hero h1{font-size:clamp(2.4rem,5vw,4rem);color:var(--maroon-dark);margin:15px 0}.page-hero p,.empty p{color:var(--muted);line-height:1.8}.facility-wrap{max-width:760px}.empty{text-align:center;padding:35px 20px;border:1px dashed var(--gold);background:var(--cream)}.empty h2{font:500 1.8rem Georgia,serif;color:var(--maroon-dark)} 
+</style>
